@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { RecipesService } from './recipes.service';
+
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,20 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'freddielicious';
+  recipes: string[];
+  constructor(private recipesService: RecipesService) { }
+
+  handleRecipesClick = () => {
+    this.recipesService.getRecipes()
+      .subscribe(data => {
+        console.log(data);
+      });
+  }
+  handleSoupsClick = () => {
+    this.recipesService.getSoups()
+      .subscribe(data => {
+        this.recipes = data.hits;
+        console.log(this.recipes);
+      });
+  }
 }
