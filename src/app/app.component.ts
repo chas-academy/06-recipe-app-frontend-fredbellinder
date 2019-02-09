@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { RecipesService } from './recipes.service';
+import * as $ from 'jquery';
 
 
 @Component({
@@ -12,17 +13,12 @@ export class AppComponent {
   recipes: string[];
   constructor(private recipesService: RecipesService) { }
 
+
   handleRecipesClick = () => {
+    console.log(this.recipes, 'yolo');
     this.recipesService.getRecipes()
       .subscribe(data => {
         console.log(data);
-      });
-  }
-  handleSoupsClick = () => {
-    this.recipesService.getSoups()
-      .subscribe(data => {
-        this.recipes = data.hits;
-        console.log(this.recipes);
       });
   }
 }

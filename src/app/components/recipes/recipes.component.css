@@ -1,0 +1,22 @@
+.recipe-search-img {
+    width: 40px;
+    height: auto;
+    float: left;
+
+}
+
+.recipe-item {
+    width: 60%;
+    height: 60px;
+}
+
+.recipe-list {
+    display: flex;
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+    padding: 20px;
+    background-color: grey;
+    border: 2px solid darkgrey;
+}
