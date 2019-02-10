@@ -11,6 +11,8 @@ import { RecipesComponent } from './components/recipes/recipes.component';
 import { HomeComponent } from './components/home/home.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { RecipeDetailComponent } from './components/recipe-detail/recipe-detail.component';
+import { NoSuchUrlComponent } from './components/no-such-url/no-such-url.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { FooterComponent } from './components/footer/footer.component';
     RecipesComponent,
     HomeComponent,
     NavBarComponent,
-    FooterComponent
+    FooterComponent,
+    RecipeDetailComponent,
+    NoSuchUrlComponent
   ],
   imports: [
     BrowserModule,
@@ -26,7 +30,7 @@ import { FooterComponent } from './components/footer/footer.component';
     HttpClientModule,
     FormsModule
   ],
-  providers: [],
+  providers: [RecipesComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

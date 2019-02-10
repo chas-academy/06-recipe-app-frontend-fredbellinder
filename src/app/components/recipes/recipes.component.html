@@ -51,12 +51,14 @@
     <button type="submit">Get Hits</button>
   </form>
 </section>
-<section class="recipe-list">
+<section class="recipe-list" *ngIf="recipes">
   <ul>
     <li *ngFor="let i of recipes">
       <div class="recipe-item">
         <img class="recipe-search-img" src="{{i.recipe.image}}" alt="{{i.recipe.label}}-picture">
-        <p>{{i.recipe.label}}</p>
+        <a [routerLink]="['/recipe-detail/', i.recipe.uri.substr(-32, 32)]">
+          <p>{{i.recipe.label}}</p>
+        </a>
       </div>
     </li>
   </ul>

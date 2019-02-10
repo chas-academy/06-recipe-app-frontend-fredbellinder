@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
 import { RecipesService } from '../../recipes.service';
 import { Recipe } from '../models/Recipe';
 import * as $ from 'jquery';
@@ -11,14 +11,15 @@ import * as $ from 'jquery';
   styleUrls: ['./recipes.component.css']
 })
 export class RecipesComponent implements OnInit {
+  @Output() onClick = new EventEmitter;
   recipes: [];
+  recipeToDetail: string = 'This is from recipes.component.ts';
 
   constructor(private recipesService: RecipesService) {
 
   }
 
   handleSubmit = (event) => {
-    // event.preventDefault();
     let query: string = $('input[name="recipe_q"]').val();
     let exclude: string = ($('input[name="recipe_exclude"]').val() == !"" ? '&excluded=' + $('input[name="recipe_exclude"]').val() : "");
     let diet: string = ($('select.select-diet').val() == !"" ? '&diet=' + $('select.select-diet').val() : "");
@@ -27,7 +28,7 @@ export class RecipesComponent implements OnInit {
     this.recipesService.getFilteredRecipes(query, exclude, diet, health)
       .subscribe(data => {
         this.recipes = data.hits;
-        console.log(event, data);
+        console.log(event, this.recipes);
       });
   }
 
@@ -37,7 +38,6 @@ export class RecipesComponent implements OnInit {
     // .subscribe(data => {
     // });
   }
-
   ngOnInit() {
     // this.recipes = this.recipesService.getSoups();
 

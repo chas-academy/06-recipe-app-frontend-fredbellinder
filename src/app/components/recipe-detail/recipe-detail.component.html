@@ -1,0 +1,14 @@
+<section class="recipe-detail-section">
+  <h2>Recipe Details</h2>
+  <div>
+    <p *ngIf="recipe_detail">
+      {{ recipe_detail.label }}
+    </p>
+    <div *ngIf="recipe_detail" class="recipe-item">
+      <img class="recipe-search-img" src="{{recipe_detail.image}}" alt="{{recipe_detail.label}}-picture">
+      <a [routerLink]="['/recipe-detail/', recipe_detail.uri.substr(-32, 32)]">
+        <p>{{recipe_detail.label}}</p>
+      </a>
+    </div>
+  </div>
+</section>
