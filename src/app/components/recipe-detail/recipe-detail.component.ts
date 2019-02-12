@@ -11,7 +11,6 @@ import { RecipesService } from 'src/app/recipes.service';
   styleUrls: ['./recipe-detail.component.css']
 })
 export class RecipeDetailComponent implements OnInit {
-  public id: string;
   recipe_detail;
   recipe_id;
   constructor(
@@ -20,7 +19,6 @@ export class RecipeDetailComponent implements OnInit {
 
     this.recipeService.getRecipeDetails(this.recipe_id).subscribe(data => {
       this.recipe_detail = data[0];
-      console.log(this.recipe_detail);
     }
     )
   }

@@ -12,8 +12,19 @@ import * as $ from 'jquery';
 })
 export class RecipesComponent implements OnInit {
   @Output() onClick = new EventEmitter;
-  recipes: [];
-  recipeToDetail: string = 'This is from recipes.component.ts';
+  recipes;
+  renderThis;
+
+  filterThis(e) {
+    if (e) {
+      this.renderThis = this.recipes.filter(data => data.recipe.healthLabels.includes(e));
+      console.log(e, this.recipes, this.renderThis);
+      // console.table(this.recipes.map(data => data.recipe.healthLabels), this.renderThis);
+    } else {
+      this.renderThis = this.recipes;
+    }
+
+  };
 
   constructor(private recipesService: RecipesService) {
 
@@ -28,6 +39,7 @@ export class RecipesComponent implements OnInit {
     this.recipesService.getFilteredRecipes(query, exclude, diet, health)
       .subscribe(data => {
         this.recipes = data.hits;
+        this.renderThis = this.recipes;
         console.log(event, this.recipes);
       });
   }

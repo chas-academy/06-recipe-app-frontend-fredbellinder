@@ -1,5 +1,11 @@
 export class Recipe {
-    id: number;
-    label: string;
-    image: string;
+
+    recipe: {
+        healthLabels: string;
+        label: string;
+        image: string;
+        diet: string;
+        shareAs: string;
+        uri: string;
+    }
 }

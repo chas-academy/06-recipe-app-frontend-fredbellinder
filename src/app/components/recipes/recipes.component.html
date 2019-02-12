@@ -1,7 +1,7 @@
-<section>
-  <form name="recipe-search" (ngSubmit)="handleSubmit()">
+<section id="search-section">
+  <form class="recipe-search" name="recipe-search" (ngSubmit)="handleSubmit()">
     <label for=" recipe_q">Searchword</label>
-    <input name="recipe_q" id="recipe_q" type="text" />
+    <input name="recipe_q" id="recipe_q" type="text" value="soup" />
     <label for="recipe_exclude">Excludeword</label>
     <input name="recipe_exclude" id="recipe_exclude" type="text" />
     <label for="diet-select">Choose a Diet:</label>
@@ -15,6 +15,7 @@
       <option value="low-sodium">low-sodium</option>
     </select>
 
+    <label for="health-select">Choose a Health-option:</label>
     <select class="select-health" name="health-select" id="health-select">
       <option value="">--Please choose an option--</option>
       <option value="alcohol-free">alcohol-free</option>
@@ -51,13 +52,47 @@
     <button type="submit">Get Hits</button>
   </form>
 </section>
-<section class="recipe-list" *ngIf="recipes">
-  <ul>
-    <li *ngFor="let i of recipes">
+<section class="recipe-list" *ngIf="renderThis">
+  <form class="filter-form p-2" (input)="filterThis($event.target.value)">
+    <label for="diet-filter">Set a filter: </label>
+    <select class="filter-diet" name="diet-filter" id="diet-filter">
+      <option value="">--Please choose an option--</option>
+      <option value="Alcohol-Free">Alcohol-Free</option>
+      <option value="Celery-Free">Celery-Free</option>
+      <option value="Crustacean-Free">Crustacean-Free</option>
+      <option value="Dairy-Free">Dairy-Free</option>
+      <option value="Egg-Free">Dairy-Free</option>
+      <option value="Fish-Free">Fish-Free</option>
+      <option value="Gluten-Free">Gluten-Free</option>
+      <option value="Kidney-Friendly">Kidney-friendly</option>
+      <option value="Kosher">Kosher</option>
+      <option value="Low-Potassium">Low-potassium</option>
+      <option value="Lupine-Free">Lupine-Free</option>
+      <option value="Mustard-Free">Mustard-Free</option>
+      <option value="No-Oil-Added">No-Oil-added</option>
+      <option value="Low-Sugar">Low-sugar</option>
+      <option value="Paleo">Paleo</option>
+      <option value="Peanut-Free">Peanut-Free</option>
+      <option value="Pescatarian">Pescatarian</option>
+      <option value="Pork-Free">Pork-Free</option>
+      <option value="Red-Meat-Free">Red-Meat-Free</option>
+      <option value="Sesame-Free">Sesame-Free</option>
+      <option value="Shellfish-Free">Shellfish-Free</option>
+      <option value="Soy-Free">Soy-Free</option>
+      <option value="Sugar-Conscious">Sugar-Conscious</option>
+      <option value="Tree-Nut-Free">Tree-Nut-Free</option>
+      <option value="Vegan">Vegan</option>
+      <option value="Vegetarian">Vegetarian</option>
+      <option value="Wheat-Free">Wheat-Free</option>
+    </select>
+
+  </form>
+  <ul class="list-group">
+    <li class="list-group-item" *ngFor="let i of renderThis">
       <div class="recipe-item">
         <img class="recipe-search-img" src="{{i.recipe.image}}" alt="{{i.recipe.label}}-picture">
         <a [routerLink]="['/recipe-detail/', i.recipe.uri.substr(-32, 32)]">
-          <p>{{i.recipe.label}}</p>
+          <p class="recipe-name">{{i.recipe.label}}</p>
         </a>
       </div>
     </li>

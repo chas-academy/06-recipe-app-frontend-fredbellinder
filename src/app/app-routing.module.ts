@@ -6,10 +6,11 @@ import { RecipeDetailComponent } from './components/recipe-detail/recipe-detail.
 import { NoSuchUrlComponent } from './components/no-such-url/no-such-url.component';
 
 const routes: Routes = [
+  { path: 'semlor', redirectTo: '', pathMatch: 'full' },
   { path: '', component: HomeComponent },
   { path: 'recipes', component: RecipesComponent },
   { path: 'recipe-detail/:id', component: RecipeDetailComponent },
-  { path: '**', component: NoSuchUrlComponent }
+  // { path: '**', component: NoSuchUrlComponent }
 ];
 
 @NgModule({

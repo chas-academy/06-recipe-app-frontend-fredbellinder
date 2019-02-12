@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { ApiHemlisar } from './api-hemlisar';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RecipesService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private apiHemlisar: ApiHemlisar) { }
 
   getRecipes() {
     return this.http.get<any>('http://localhost:3000/hits');
@@ -14,15 +15,14 @@ export class RecipesService {
 
 
   getFilteredRecipes(query: string, exclude: string, diet: string, health: string) {
-    // e4d8a3a2 9406a4fa2b489723b15b639542219839 || 733b95fc f3dc12cfcfedc94348f76ee0bdb94abe
-    let queryUrl = `https://api.edamam.com/search?q=${query}${exclude}&app_id=e4d8a3a2&app_key=9406a4fa2b489723b15b639542219839&from=0&to=3${diet}${health}`;
+    let queryUrl = `https://api.edamam.com/search?q=${query}${exclude}&app_id=&app_key=${this.apiHemlisar._app_key}&from=0&to=100${diet}${health}`;
     return this.http.get<any>(queryUrl);
 
   }
 
   getRecipeDetails(id) {
     let param = `http%3A%2F%2Fwww.edamam.com%2Fontologies%2Fedamam.owl%23recipe_${id}`
-    let queryUrl = `https://api.edamam.com/search?r=${param}&app_id=e4d8a3a2&app_key=9406a4fa2b489723b15b639542219839`;
+    let queryUrl = `https://api.edamam.com/search?r=${param}&app_id=${this.apiHemlisar._app_id}&app_key=${this.apiHemlisar._app_key}`;
     console.log(id);
     return this.http.get<any>(queryUrl);
     // encodeURIComponent()
