@@ -32,9 +32,9 @@ export class RecipesComponent implements OnInit {
 
   handleSubmit = (event) => {
     let query: string = $('input[name="recipe_q"]').val();
-    let exclude: string = ($('input[name="recipe_exclude"]').val() == !"" ? '&excluded=' + $('input[name="recipe_exclude"]').val() : "");
-    let diet: string = ($('select.select-diet').val() == !"" ? '&diet=' + $('select.select-diet').val() : "");
-    let health: string = ($('select.select-health').val() == !"" ? '&health=' + $('select.select-health').val() : "");
+    let exclude: string = ($('input[name="recipe_exclude"]').val() != null ? '&excluded=' + $('input[name="recipe_exclude"]').val() : "");
+    let diet: string = ($('select.select-diet').val() != "" ? '&diet=' + $('select.select-diet').val() : "");
+    let health: string = ($('select.select-health').val() != "" ? '&health=' + $('select.select-health').val() : "");
 
     this.recipesService.getFilteredRecipes(query, exclude, diet, health)
       .subscribe(data => {
