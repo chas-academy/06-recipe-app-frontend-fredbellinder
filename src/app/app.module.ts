@@ -13,6 +13,7 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { RecipeDetailComponent } from './components/recipe-detail/recipe-detail.component';
 import { NoSuchUrlComponent } from './components/no-such-url/no-such-url.component';
+import { RecipeListComponent } from './components/recipe-list/recipe-list.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { NoSuchUrlComponent } from './components/no-such-url/no-such-url.compone
     NavBarComponent,
     FooterComponent,
     RecipeDetailComponent,
-    NoSuchUrlComponent
+    NoSuchUrlComponent,
+    RecipeListComponent
   ],
   imports: [
     BrowserModule,

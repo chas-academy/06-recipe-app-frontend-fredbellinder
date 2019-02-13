@@ -15,7 +15,7 @@ export class RecipesService {
 
 
   getFilteredRecipes(query: string, exclude: string, diet: string, health: string) {
-    let queryUrl = `https://api.edamam.com/search?q=${query}${exclude}&app_id=${this.apiHemlisar._app_id}&app_key=${this.apiHemlisar._app_key}&from=0&to=100${diet}${health}`;
+    let queryUrl = `https://api.edamam.com/search?q=${query}${exclude}&app_id=${this.apiHemlisar._app_id}&app_key=${this.apiHemlisar._app_key}&from=0&to=10${diet}${health}`;
     return this.http.get<any>(queryUrl);
 
   }

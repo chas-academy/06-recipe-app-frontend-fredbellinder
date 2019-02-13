@@ -11,20 +11,41 @@ import * as $ from 'jquery';
   styleUrls: ['./recipes.component.css']
 })
 export class RecipesComponent implements OnInit {
-  @Output() onClick = new EventEmitter;
+  // @Output() onClick = new EventEmitter;
   recipes;
   renderThis;
 
   filterThis(e) {
-    if (e) {
-      this.renderThis = this.recipes.filter(data => data.recipe.healthLabels.includes(e));
-      console.log(e, this.recipes, this.renderThis);
+    let filterPassingRecipes = [];
+    if (e != "") {
+      e.filter(value => this.recipes.filter(data => {
+        if (data.recipe.healthLabels.includes(value) == true) {
+          debugger;
+          filterPassingRecipes.push(data);
+        }
+      }
+      ));
+      this.renderThis = filterPassingRecipes;
+      console.log(this.renderThis);
       // console.table(this.recipes.map(data => data.recipe.healthLabels), this.renderThis);
     } else {
       this.renderThis = this.recipes;
     }
 
   };
+  getSelectedOptions(input) {
+    let checkBoxes = [], checkBox;
+    for (let i = 0, length = input.target.length; i < length; i++) {
+      checkBox = input.target[i];
+
+      if (checkBox.selected) {
+        checkBoxes = [];
+        checkBoxes.push(checkBox.value);
+      }
+    }
+    checkBoxes ? this.filterThis(checkBoxes) : this.filterThis([""]);
+  }
+
 
   constructor(private recipesService: RecipesService) {
 

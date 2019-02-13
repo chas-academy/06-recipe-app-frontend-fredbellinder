@@ -53,9 +53,9 @@
   </form>
 </section>
 <section class="recipe-list" *ngIf="renderThis">
-  <form class="filter-form p-2" (input)="filterThis($event.target.value)">
+  <form class="filter-form p-2" (change)="getSelectedOptions($event)">
     <label for="diet-filter">Set a filter: </label>
-    <select class="filter-diet" name="diet-filter" id="diet-filter">
+    <select class="filter-diet" name="diet-filter[]" id="diet-filter" multiple>
       <option value="">--Please choose an option--</option>
       <option value="Alcohol-Free">Alcohol-Free</option>
       <option value="Celery-Free">Celery-Free</option>
@@ -85,9 +85,8 @@
       <option value="Vegetarian">Vegetarian</option>
       <option value="Wheat-Free">Wheat-Free</option>
     </select>
-
   </form>
-  <ul class="list-group">
+  <ul class="list-group" *ngIf="renderThis">
     <li class="list-group-item" *ngFor="let i of renderThis">
       <div class="recipe-item">
         <img class="recipe-search-img" src="{{i.recipe.image}}" alt="{{i.recipe.label}}-picture">
