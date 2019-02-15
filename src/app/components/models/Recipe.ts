@@ -7,5 +7,5 @@ export class Recipe {
         diet: string;
         shareAs: string;
         uri: string;
-    }
+    };
 }

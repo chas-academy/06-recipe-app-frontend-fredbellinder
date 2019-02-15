@@ -1,10 +1,10 @@
 <section id="search-section">
   <form class="recipe-search" name="recipe-search" (ngSubmit)="handleSubmit()">
-    <label for=" recipe_q">Searchword</label>
+    <label for=" recipe_q">I wanna eat:</label>
     <input name="recipe_q" id="recipe_q" type="text" value="soup" />
-    <label for="recipe_exclude">Excludeword</label>
+    <label for="recipe_exclude">But not:</label>
     <input name="recipe_exclude" id="recipe_exclude" type="text" />
-    <label for="diet-select">Choose a Diet:</label>
+    <label for="diet-select">My diet:</label>
     <select class="select-diet" name="diet-select" id="diet-select">
       <option value="">--Please choose an option--</option>
       <option value="balanced">balanced</option>
@@ -16,33 +16,8 @@
       <!-- <option value="low-sodium">low-sodium</option> -->
     </select>
 
-    <label for="health-select">Choose a Health-option:</label>
+    <label for="health-select">I need my food to be:</label>
     <select class="select-health" name="health-select" id="health-select">
-      <!-- These are inactivated from edamams api due to free account: -->
-      <!-- 
-      <option value="Celery-Free">Celery-Free</option>
-      <option value="Crustacean-Free">Crustacean-Free</option>
-      <option value="Dairy-Free">Dairy-Free</option>
-      <option value="Egg-Free">Dairy-Free</option>
-      <option value="Fish-Free">Fish-Free</option>
-      <option value="Gluten-Free">Gluten-Free</option>
-      <option value="Kidney-Friendly">Kidney-friendly</option>
-      <option value="Kosher">Kosher</option>
-      <option value="Low-Potassium">Low-potassium</option>
-      <option value="Lupine-Free">Lupine-Free</option>
-      <option value="Mustard-Free">Mustard-Free</option>
-      <option value="No-Oil-Added">No-Oil-added</option>
-      <option value="Low-Sugar">Low-sugar</option>
-      <option value="Paleo">Paleo</option>
-      <option value="Pescatarian">Pescatarian</option>
-      <option value="Pork-Free">Pork-Free</option>
-      <option value="Red-Meat-Free">Red-Meat-Free</option>
-      <option value="Sesame-Free">Sesame-Free</option>
-      <option value="Shellfish-Free">Shellfish-Free</option>
-      <option value="Soy-Free">Soy-Free</option> 
-      <option value="Wheat-Free">Wheat-Free</option>
-    -->
-
       <option value="">--Please choose an option--</option>
       <option value="alcohol-free">Alcohol-Free</option>
       <option value="peanut-free">Peanut-Free</option>
@@ -56,54 +31,37 @@
   </form>
 </section>
 <section class="recipe-list" *ngIf="renderThis">
+
+
+
   <form class="filter-form p-2" (change)="getSelectedOptions($event)">
-    <label for="diet-filter">Set multiple filters: </label>
-    <select class="filter-diet" name="diet-filter[]" id="diet-filter" multiple>
-      <!-- These are inactivated from edamams api due to free account: -->
-      <!-- 
-      <option value="Celery-Free">Celery-Free</option>
-      <option value="Crustacean-Free">Crustacean-Free</option>
-      <option value="Dairy-Free">Dairy-Free</option>
-      <option value="Egg-Free">Dairy-Free</option>
-      <option value="Fish-Free">Fish-Free</option>
-      <option value="Gluten-Free">Gluten-Free</option>
-      <option value="Kidney-Friendly">Kidney-friendly</option>
-      <option value="Kosher">Kosher</option>
-      <option value="Low-Potassium">Low-potassium</option>
-      <option value="Lupine-Free">Lupine-Free</option>
-      <option value="Mustard-Free">Mustard-Free</option>
-      <option value="No-Oil-Added">No-Oil-added</option>
-      <option value="Low-Sugar">Low-sugar</option>
-      <option value="Paleo">Paleo</option>
-      <option value="Pescatarian">Pescatarian</option>
-      <option value="Pork-Free">Pork-Free</option>
-      <option value="Red-Meat-Free">Red-Meat-Free</option>
-      <option value="Sesame-Free">Sesame-Free</option>
-      <option value="Shellfish-Free">Shellfish-Free</option>
-      <option value="Soy-Free">Soy-Free</option> 
-      <option value="Wheat-Free">Wheat-Free</option>
-      -->
-      <option value="">Show All</option>
-      <option value="Alcohol-Free">Alcohol-Free</option>
-      <option value="Peanut-Free">Peanut-Free</option>
-      <option value="Sugar-Conscious">Sugar-Conscious</option>
-      <option value="Tree-Nut-Free">Tree-Nut-Free</option>
-      <option value="Vegan">Vegan</option>
-      <option value="Vegetarian">Vegetarian</option>
-    </select>
+    <input type="checkbox" id="alcohol-free" value="Alcohol-Free" />
+    <label for="alcohol-free">Alcohol-Free </label>
+
+    <input type="checkbox" id="peanut-free" value="Peanut-Free" />
+    <label for="peanut-free">Peanut-Free </label>
+
+    <input type="checkbox" id="sugar-conscious" value="Sugar-Conscious" />
+    <label for="sugar-conscious">Sugar-Conscious </label>
+
+    <input type="checkbox" id="tree-nut-free" value="Tree-Nut-Free" />
+    <label for="tree-nut-free">Tree-Nut-Free </label>
+
+    <input type="checkbox" id="vegan" value="Vegan" />
+    <label for="vegan">Vegan </label>
+
+    <input type="checkbox" id="vegetarian" value="Vegetarian" />
+    <label for="vegetarian">Vegetarian </label>
   </form>
+
   <ul class="list-group" *ngIf="renderThis">
     <li class="list-group-item" *ngFor="let i of renderThis">
       <div class="recipe-item">
-        <img
-          class="recipe-search-img"
-          src="{{ i.recipe.image }}"
-          alt="{{ i.recipe.label }}-picture"
-        />
+        <img class="recipe-search-img" src="{{ i.recipe.image }}" alt="{{ i.recipe.label }}-picture" />
         <a [routerLink]="['/recipe-detail/', i.recipe.uri.substr(-32, 32)]">
           <p class="recipe-name">{{ i.recipe.label }}</p>
         </a>
-        <button (click)="addRecipeToList($event)">Favorite</button>
+        <button (click)="addRecipesToList(i.recipe)">Favorite</button>
       </div>
     </li>
   </ul>

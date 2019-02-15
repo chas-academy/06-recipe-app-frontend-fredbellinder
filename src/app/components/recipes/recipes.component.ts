@@ -5,79 +5,96 @@ import {
   Input,
   Output,
   OnDestroy
-} from "@angular/core";
-import { RecipesService } from "../../recipes.service";
-import { Recipe } from "../models/Recipe";
-import * as $ from "jquery";
-import { Subscription } from "rxjs";
+} from '@angular/core';
+import { RecipesService } from '../../recipes.service';
+import { Recipe } from '../models/Recipe';
+import * as $ from 'jquery';
+import { Subscription } from 'rxjs';
+import { RecipesListsService } from '../../recipes-lists.service';
+import { forEach } from '@angular/router/src/utils/collection';
 
 @Component({
-  selector: "app-recipes",
-  templateUrl: "./recipes.component.html",
-  styleUrls: ["./recipes.component.css"]
+  selector: 'app-recipes',
+  templateUrl: './recipes.component.html',
+  styleUrls: ['./recipes.component.css']
 })
 export class RecipesComponent implements OnInit, OnDestroy {
   // @Output() onClick = new EventEmitter;
-  constructor(private recipesService: RecipesService) {}
+  constructor(
+    private recipesService: RecipesService,
+    private recipesListsService: RecipesListsService
+  ) { }
   recipes;
-  renderThis;
+  renderThis: any[];
   searchSubscription: Subscription;
 
   filterThis(e) {
     let filterPassingRecipes = [];
-    if (e != "") {
-      e.filter(value =>
-        this.recipes.filter(data => {
-          if (data.recipe.healthLabels.includes(value) == true) {
-            filterPassingRecipes.push(data);
-          }
-        })
-      );
+    let truth
+    if (e.length > 0) {
+      this.recipes.forEach(recipe => {
+        truth = e.every((h: any) => {
+          return recipe.recipe.healthLabels.includes(h);
+        });
+        if (truth) { filterPassingRecipes.push(recipe); }
+        console.log(truth);
+      });
       this.renderThis = filterPassingRecipes;
-      console.log(this.renderThis);
-    } else {
+    }
+
+
+
+
+
+
+
+    else {
       this.renderThis = this.recipes;
     }
   }
   getSelectedOptions(input) {
-    let checkBoxes = [],
-      checkBox;
-    for (let i = 0, length = input.target.length; i < length; i++) {
-      checkBox = input.target[i];
+    const checkBoxes = [];
+    let checkBox;
+    for (let i = 0, length = input.currentTarget.length; i < length; i++) {
+      checkBox = input.currentTarget[i];
 
-      if (checkBox.selected) {
-        checkBoxes = [];
+      if (checkBox.checked) {
         checkBoxes.push(checkBox.value);
       }
     }
-    checkBoxes ? this.filterThis(checkBoxes) : this.filterThis([""]);
+    checkBoxes ? this.filterThis(checkBoxes) : this.filterThis(['']);
+    console.log('checked: ', checkBoxes);
   }
 
-  handleSubmit = event => {
-    let query: string = $('input[name="recipe_q"]').val();
-    let exclude: string =
+  addRecipesToList(e) {
+    console.log(e, 'This adds a recipe to a list');
+    this.recipesListsService.addRecipeToList(e);
+  }
+
+  handleSubmit = () => {
+    const query: string = $('input[name="recipe_q"]').val();
+    const exclude: string =
       $('input[name="recipe_exclude"]').val() != null
-        ? "&excluded=" + $('input[name="recipe_exclude"]').val()
-        : "";
-    let diet: string =
-      $("select.select-diet").val() != ""
-        ? "&diet=" + $("select.select-diet").val()
-        : "";
-    let health: string =
-      $("select.select-health").val() != ""
-        ? "&health=" + $("select.select-health").val()
-        : "";
+        ? '&excluded=' + $('input[name="recipe_exclude"]').val()
+        : '';
+    const diet: string =
+      $('select.select-diet').val() != ''
+        ? '&diet=' + $('select.select-diet').val()
+        : '';
+    const health: string =
+      $('select.select-health').val() != ''
+        ? '&health=' + $('select.select-health').val()
+        : '';
 
     this.searchSubscription = this.recipesService
       .getFilteredRecipes(query, exclude, diet, health)
       .subscribe(data => {
         this.recipes = data.hits;
         this.renderThis = this.recipes;
-        console.log(event, this.recipes);
       });
-  };
+  }
 
-  ngOnInit() {}
+  ngOnInit() { }
   ngOnDestroy() {
     if (this.searchSubscription) {
       this.searchSubscription.unsubscribe();
