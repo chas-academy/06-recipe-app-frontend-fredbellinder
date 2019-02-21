@@ -1,7 +1,7 @@
 <section id="search-section">
   <form class="recipe-search" name="recipe-search" (ngSubmit)="handleSubmit()">
     <label for=" recipe_q">I wanna eat:</label>
-    <input name="recipe_q" id="recipe_q" type="text" value="soup" />
+    <input name="recipe_q" id="recipe_q" type="text" value="thai" />
     <label for="recipe_exclude">But not:</label>
     <input name="recipe_exclude" id="recipe_exclude" type="text" />
     <label for="diet-select">My diet:</label>
@@ -35,23 +35,30 @@
 
 
   <form class="filter-form p-2" (change)="getSelectedOptions($event)">
-    <input type="checkbox" id="alcohol-free" value="Alcohol-Free" />
-    <label for="alcohol-free">Alcohol-Free </label>
-
-    <input type="checkbox" id="peanut-free" value="Peanut-Free" />
-    <label for="peanut-free">Peanut-Free </label>
-
-    <input type="checkbox" id="sugar-conscious" value="Sugar-Conscious" />
-    <label for="sugar-conscious">Sugar-Conscious </label>
-
-    <input type="checkbox" id="tree-nut-free" value="Tree-Nut-Free" />
-    <label for="tree-nut-free">Tree-Nut-Free </label>
-
-    <input type="checkbox" id="vegan" value="Vegan" />
-    <label for="vegan">Vegan </label>
-
-    <input type="checkbox" id="vegetarian" value="Vegetarian" />
-    <label for="vegetarian">Vegetarian </label>
+    <div>
+      <input type="checkbox" id="alcohol-free" value="Alcohol-Free" />
+      <label for="alcohol-free">Alcohol-Free </label>
+    </div>
+    <div>
+      <input type="checkbox" id="peanut-free" value="Peanut-Free" />
+      <label for="peanut-free">Peanut-Free </label>
+    </div>
+    <div>
+      <input type="checkbox" id="sugar-conscious" value="Sugar-Conscious" />
+      <label for="sugar-conscious">Sugar-Conscious </label>
+    </div>
+    <div>
+      <input type="checkbox" id="tree-nut-free" value="Tree-Nut-Free" />
+      <label for="tree-nut-free">Tree-Nut-Free </label>
+    </div>
+    <div>
+      <input type="checkbox" id="vegan" value="Vegan" />
+      <label for="vegan">Vegan </label>
+    </div>
+    <div>
+      <input type="checkbox" id="vegetarian" value="Vegetarian" />
+      <label for="vegetarian">Vegetarian </label>
+    </div>
   </form>
 
   <ul class="list-group" *ngIf="renderThis">

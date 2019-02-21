@@ -36,6 +36,18 @@ form.recipe-search > * {
   margin-right: auto;
 }
 
+section.recipe-list > form {
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  justify-content: space-between;
+  width: 80%;
+}
+
+section.recipe-list > form > div > label {
+  margin-left: 6px;
+}
+
 @media only screen and (max-width: 450px) {
   .recipe-list {
     width: 100%;

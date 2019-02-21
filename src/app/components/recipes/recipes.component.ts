@@ -29,8 +29,8 @@ export class RecipesComponent implements OnInit, OnDestroy {
   searchSubscription: Subscription;
 
   filterThis(e) {
-    let filterPassingRecipes = [];
-    let truth
+    const filterPassingRecipes = [];
+    let truth;
     if (e.length > 0) {
       this.recipes.forEach(recipe => {
         truth = e.every((h: any) => {
@@ -40,15 +40,7 @@ export class RecipesComponent implements OnInit, OnDestroy {
         console.log(truth);
       });
       this.renderThis = filterPassingRecipes;
-    }
-
-
-
-
-
-
-
-    else {
+    } else {
       this.renderThis = this.recipes;
     }
   }
@@ -78,11 +70,11 @@ export class RecipesComponent implements OnInit, OnDestroy {
         ? '&excluded=' + $('input[name="recipe_exclude"]').val()
         : '';
     const diet: string =
-      $('select.select-diet').val() != ''
+      $('select.select-diet').val() !== ''
         ? '&diet=' + $('select.select-diet').val()
         : '';
     const health: string =
-      $('select.select-health').val() != ''
+      $('select.select-health').val() !== ''
         ? '&health=' + $('select.select-health').val()
         : '';
 
