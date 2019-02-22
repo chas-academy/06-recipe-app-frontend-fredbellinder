@@ -9,8 +9,30 @@ import { Observable } from 'rxjs';
 export class RecipesService {
   constructor(private http: HttpClient, private apiHemlisar: ApiHemlisar) { }
 
+  searchResults;
+  detailResult;
+
   getRecipes() {
-    return this.http.get<any>('http://localhost:3000/hits');
+    const url = 'http://recipe.test/api/auth/recipes';
+
+    const httpHeaders = {
+
+      Authorization: `${localStorage.token_type} ${localStorage.RecipeAccessToken}`
+    };
+    const fetchData = {
+      method: 'GET',
+      headers: httpHeaders
+    };
+
+    // fetch(url, fetchData)
+    //   .then((res) => { res.json() })
+    //   .then((response) => {
+    //     return response;
+    //   })
+    // .catch ((error) => console.error(error));
+
+    this.searchResults = this.http.get<Observable<Array<object>>>(url, { headers: httpHeaders });
+    return this.searchResults;
   }
 
   getFilteredRecipes(
@@ -26,12 +48,17 @@ export class RecipesService {
   }
 
   getRecipeDetails(id) {
-    const param = `http%3A%2F%2Fwww.edamam.com%2Fontologies%2Fedamam.owl%23recipe_${id}`;
-    const queryUrl = `https://api.edamam.com/search?r=${param}&app_id=${
-      this.apiHemlisar._app_id
-      }&app_key=${this.apiHemlisar._app_key}`;
-    console.log(id);
-    return this.http.get<Observable<Array<object>>>(queryUrl);
-    // encodeURIComponent()
+    const url = `http://recipe.test/api/auth/recipes/${id}`;
+
+    const httpHeaders = {
+
+      Authorization: `${localStorage.token_type} ${localStorage.RecipeAccessToken}`
+    };
+    const fetchData = {
+      method: 'GET',
+      headers: httpHeaders
+    };
+    this.detailResult = this.http.get<Observable<Array<object>>>(url, { headers: httpHeaders });
+    return this.detailResult;
   }
 }

@@ -27,7 +27,7 @@ export class RecipesComponent implements OnInit, OnDestroy {
     const filterPassingRecipes = [];
     let truth;
     if (e.length > 0) {
-      this.recipes.forEach(recipe => {
+      this.recipes.data.forEach(recipe => {
         truth = e.every((h: any) => {
           return recipe.recipe.healthLabels.includes(h);
         });
@@ -36,7 +36,7 @@ export class RecipesComponent implements OnInit, OnDestroy {
       });
       this.renderThis = filterPassingRecipes;
     } else {
-      this.renderThis = this.recipes;
+      this.renderThis = this.recipes.data;
     }
   }
   getSelectedOptions(input) {
@@ -54,6 +54,7 @@ export class RecipesComponent implements OnInit, OnDestroy {
   }
 
   addRecipesToList(e) {
+    //e = receptobjektet
     console.log(e, 'This adds a recipe to a list');
     this.recipesListsService.addRecipeToList(e);
   }
@@ -72,34 +73,15 @@ export class RecipesComponent implements OnInit, OnDestroy {
     //   $('select.select-health').val() !== ''
     //     ? '&health=' + $('select.select-health').val()
     //     : '';
-    const url = 'http://recipe.test/api/auth/recipes';
-
-    const httpHeaders = {
-
-      Authorization: `${localStorage.token_type} ${localStorage.RecipeAccessToken}`
-    }
-      ;
 
 
-    const fetchData = {
-      method: 'GET',
-      headers: httpHeaders
-    };
-
-    fetch(url, fetchData)
-      .then((res) => { res.json() })
-      .then((response) => {
-
-        debugger;
-        this.searchSubscription = response;
-      })
-      .catch((error) => console.error(error));
-
-    // this.searchSubscription = this.recipesService
-    //   .getFilteredRecipes(query, exclude, diet, health)
-    //   .subscribe(data => {
-    //     this.recipes = data.hits;
-    //     this.renderThis = this.recipes;
+    this.searchSubscription = this.recipesService
+      .getRecipes()
+      .subscribe(data => {
+        console.log(data);
+        this.recipes = data;
+        this.renderThis = this.recipes.data;
+      });
   }
 
   ngOnInit() { }

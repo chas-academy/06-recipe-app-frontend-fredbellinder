@@ -1,8 +1,8 @@
 <section id="search-section">
   <form class="recipe-search" name="recipe-search" (ngSubmit)="handleSubmit()">
     <label for=" recipe_q">I wanna eat:</label>
-    <input name="recipe_q" id="recipe_q" type="text" value="thai" />
-    <label for="recipe_exclude">But not:</label>
+    <input name="recipe_q" id="recipe_q" type="text" value="chicken" />
+    <!-- <label for="recipe_exclude">But not:</label>
     <input name="recipe_exclude" id="recipe_exclude" type="text" />
     <label for="diet-select">My diet:</label>
     <select class="select-diet" name="diet-select" id="diet-select">
@@ -11,12 +11,12 @@
       <option value="high-protein">high-protein</option>
       <option value="low-carb">low-carb</option>
       <option value="low-fat">low-fat</option>
-      <!-- These are inactivated from edamams api due to free account: -->
-      <!-- <option value="high-fiber">high-fiber</option> -->
-      <!-- <option value="low-sodium">low-sodium</option> -->
-    </select>
+      These are inactivated from edamams api due to free account:
+      <option value="high-fiber">high-fiber</option>
+      <option value="low-sodium">low-sodium</option>
+    </select> -->
 
-    <label for="health-select">I need my food to be:</label>
+    <!-- <label for="health-select">I need my food to be:</label>
     <select class="select-health" name="health-select" id="health-select">
       <option value="">--Please choose an option--</option>
       <option value="alcohol-free">Alcohol-Free</option>
@@ -25,7 +25,7 @@
       <option value="tree-nut-free">Tree-Nut-Free</option>
       <option value="vegan">Vegan</option>
       <option value="vegetarian">Vegetarian</option>
-    </select>
+    </select> -->
 
     <button type="submit">Get Hits</button>
   </form>
@@ -65,7 +65,7 @@
     <li class="list-group-item" *ngFor="let i of renderThis">
       <div class="recipe-item">
         <img class="recipe-search-img" src="{{ i.recipe.image }}" alt="{{ i.recipe.label }}-picture" />
-        <a [routerLink]="['/recipe-detail/', i.recipe.uri.substr(-32, 32)]">
+        <a [routerLink]="['/recipe-detail/', i.recipe.id]">
           <p class="recipe-name">{{ i.recipe.label }}</p>
         </a>
         <button (click)="addRecipesToList(i.recipe)">Favorite</button>

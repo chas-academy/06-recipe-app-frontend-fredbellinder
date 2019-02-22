@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
         localStorage.RecipeAccessToken = response.access_token;
         localStorage.token_type = response.token_type;
       })
-      .catch((error) => console.error(error))
+      .catch((error) => console.error(error));
 
 
   }
