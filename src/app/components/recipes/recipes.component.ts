@@ -1,17 +1,12 @@
 import {
   Component,
   OnInit,
-  EventEmitter,
-  Input,
-  Output,
   OnDestroy
 } from '@angular/core';
 import { RecipesService } from '../../recipes.service';
-import { Recipe } from '../models/Recipe';
 import * as $ from 'jquery';
 import { Subscription } from 'rxjs';
 import { RecipesListsService } from '../../recipes-lists.service';
-import { forEach } from '@angular/router/src/utils/collection';
 
 @Component({
   selector: 'app-recipes',
@@ -64,26 +59,47 @@ export class RecipesComponent implements OnInit, OnDestroy {
   }
 
   handleSubmit = () => {
-    const query: string = $('input[name="recipe_q"]').val();
-    const exclude: string =
-      $('input[name="recipe_exclude"]').val() != null
-        ? '&excluded=' + $('input[name="recipe_exclude"]').val()
-        : '';
-    const diet: string =
-      $('select.select-diet').val() !== ''
-        ? '&diet=' + $('select.select-diet').val()
-        : '';
-    const health: string =
-      $('select.select-health').val() !== ''
-        ? '&health=' + $('select.select-health').val()
-        : '';
+    // const query: string = $('input[name="recipe_q"]').val();
+    // const exclude: string =
+    //   $('input[name="recipe_exclude"]').val() != null
+    //     ? '&excluded=' + $('input[name="recipe_exclude"]').val()
+    //     : '';
+    // const diet: string =
+    //   $('select.select-diet').val() !== ''
+    //     ? '&diet=' + $('select.select-diet').val()
+    //     : '';
+    // const health: string =
+    //   $('select.select-health').val() !== ''
+    //     ? '&health=' + $('select.select-health').val()
+    //     : '';
+    const url = 'http://recipe.test/api/auth/recipes';
 
-    this.searchSubscription = this.recipesService
-      .getFilteredRecipes(query, exclude, diet, health)
-      .subscribe(data => {
-        this.recipes = data.hits;
-        this.renderThis = this.recipes;
-      });
+    const httpHeaders = {
+
+      Authorization: `${localStorage.token_type} ${localStorage.RecipeAccessToken}`
+    }
+      ;
+
+
+    const fetchData = {
+      method: 'GET',
+      headers: httpHeaders
+    };
+
+    fetch(url, fetchData)
+      .then((res) => { res.json() })
+      .then((response) => {
+
+        debugger;
+        this.searchSubscription = response;
+      })
+      .catch((error) => console.error(error));
+
+    // this.searchSubscription = this.recipesService
+    //   .getFilteredRecipes(query, exclude, diet, health)
+    //   .subscribe(data => {
+    //     this.recipes = data.hits;
+    //     this.renderThis = this.recipes;
   }
 
   ngOnInit() { }
@@ -93,3 +109,4 @@ export class RecipesComponent implements OnInit, OnDestroy {
     }
   }
 }
+

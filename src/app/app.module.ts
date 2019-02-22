@@ -12,6 +12,7 @@ import { FooterComponent } from "./components/footer/footer.component";
 import { RecipeDetailComponent } from "./components/recipe-detail/recipe-detail.component";
 import { NoSuchUrlComponent } from "./components/no-such-url/no-such-url.component";
 import { RecipeListComponent } from "./components/recipe-list/recipe-list.component";
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { RecipeListComponent } from "./components/recipe-list/recipe-list.compon
     FooterComponent,
     RecipeDetailComponent,
     NoSuchUrlComponent,
-    RecipeListComponent
+    RecipeListComponent,
+    LoginComponent
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [RecipesComponent],
