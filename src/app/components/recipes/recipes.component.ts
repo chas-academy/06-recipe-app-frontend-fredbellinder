@@ -1,13 +1,17 @@
 import {
   Component,
   OnInit,
-  OnDestroy
+  OnDestroy,
+  Injectable
 } from '@angular/core';
 import { RecipesService } from '../../recipes.service';
 import * as $ from 'jquery';
 import { Subscription } from 'rxjs';
 import { RecipesListsService } from '../../recipes-lists.service';
 
+@Injectable({
+  providedIn: 'root'
+})
 @Component({
   selector: 'app-recipes',
   templateUrl: './recipes.component.html',
@@ -54,7 +58,7 @@ export class RecipesComponent implements OnInit, OnDestroy {
   }
 
   addRecipesToList(e) {
-    //e = receptobjektet
+    // e = receptobjektet
     console.log(e, 'This adds a recipe to a list');
     this.recipesListsService.addRecipeToList(e);
   }

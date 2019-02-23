@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
@@ -19,7 +20,7 @@ export class LoginComponent implements OnInit {
       'X-Requested-With': 'XMLHttpRequest'
     };
 
-    const body1 = {
+    const body = {
       email: e.srcElement[0].value,
       password: e.srcElement[1].value,
       remember_me: false
@@ -27,7 +28,7 @@ export class LoginComponent implements OnInit {
 
     const fetchData = {
       method: 'POST',
-      body: JSON.stringify(body1),
+      body: JSON.stringify(body),
       headers: httpHeaders
     };
 
@@ -40,6 +41,7 @@ export class LoginComponent implements OnInit {
       })
       .catch((error) => console.error(error));
 
+    this.router.navigateByUrl('recipes');
 
   }
 }

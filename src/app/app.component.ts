@@ -1,8 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, Injectable } from '@angular/core';
 import { RecipesService } from './recipes.service';
 import * as $ from 'jquery';
 
-
+@Injectable({
+  providedIn: 'root'
+})
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',

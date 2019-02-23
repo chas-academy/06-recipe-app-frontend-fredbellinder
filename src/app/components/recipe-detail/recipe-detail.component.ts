@@ -1,10 +1,12 @@
-import { Component, OnInit, Input, Output } from '@angular/core';
+import { Component, OnInit, Input, Output, Injectable } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { RecipesComponent } from '../recipes/recipes.component'
 import { RecipesService } from 'src/app/recipes.service';
 
-
+@Injectable({
+  providedIn: 'root'
+})
 @Component({
   selector: 'app-recipe-detail',
   templateUrl: './recipe-detail.component.html',

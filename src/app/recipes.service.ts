@@ -35,17 +35,17 @@ export class RecipesService {
     return this.searchResults;
   }
 
-  getFilteredRecipes(
-    query: string,
-    exclude: string,
-    diet: string,
-    health: string
-  ) {
-    const queryUrl = `https://api.edamam.com/search?q=${query}${exclude}&app_id=${
-      this.apiHemlisar._app_id
-      }&app_key=${this.apiHemlisar._app_key}&from=0&to=10${diet}${health}`;
-    return this.http.get<Observable<Array<object>>>(queryUrl);
-  }
+  // getFilteredRecipes(
+  //   query: string,
+  //   exclude: string,
+  //   diet: string,
+  //   health: string
+  // ) {
+  //   const queryUrl = `https://api.edamam.com/search?q=${query}${exclude}&app_id=${
+  //     this.apiHemlisar._app_id
+  //     }&app_key=${this.apiHemlisar._app_key}&from=0&to=10${diet}${health}`;
+  //   return this.http.get<Observable<Array<object>>>(queryUrl);
+  // }
 
   getRecipeDetails(id) {
     const url = `http://recipe.test/api/auth/recipes/${id}`;

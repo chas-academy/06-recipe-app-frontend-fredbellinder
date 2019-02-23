@@ -3,17 +3,13 @@
 </p>
 <section class="list-section">
   <ul class="list-group" *ngIf="renderThisFavorites">
-    <li class="list-group-item" *ngFor="let i of renderThisFavorites[0]">
+    <li class="list-group-item" *ngFor="let i of renderThisFavorites">
       <div class="recipe-item">
-        <img
-          class="recipe-list-img"
-          src="{{ i.image }}"
-          alt="{{ i.label }}-picture"
-        />
-        <a [routerLink]="['/recipe-detail/', i.uri.substr(-32, 32)]">
-          <p class="recipe-name">{{ i.label }}</p>
+        <img class="recipe-list-img" src="{{ i.recipe.image }}" alt="{{ i.recipe.label }}-picture" />
+        <a [routerLink]="['/recipe-detail/', i.recipe.id]">
+          <p class=" recipe-name">{{ i.recipe.label }}</p>
         </a>
-        <button (click)="removeRecipeFromList(i)">Delete</button>
+        <button (click)="removeRecipeFromList(i.recipe.id)">Delete</button>
       </div>
     </li>
   </ul>
