@@ -1,7 +1,7 @@
 <section id="search-section">
-  <form class="recipe-search" name="recipe-search" (ngSubmit)="handleSubmit()">
+  <form class="recipe-search" name="recipe-search" (ngSubmit)="handleSubmit($event)">
     <label for=" recipe_q">I wanna eat:</label>
-    <input name="recipe_q" id="recipe_q" type="text" value="chicken" />
+    <input name="recipe_q" id="recipe_q" type="text" value="" />
     <!-- <label for="recipe_exclude">But not:</label>
     <input name="recipe_exclude" id="recipe_exclude" type="text" />
     <label for="diet-select">My diet:</label>

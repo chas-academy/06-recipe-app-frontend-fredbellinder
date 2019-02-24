@@ -25,8 +25,9 @@ export class RecipeListComponent implements OnInit, OnDestroy, OnChanges {
     this.recipesListsService.getAllRecipesForCurrentUser().subscribe(data => {
       console.log(data);
       const recipes = data;
-      if (data !== []) {
+      if (Array.isArray(data)) {
         this.renderThisFavorites = recipes;
+        console.log(typeof data);
       }
     });
   }

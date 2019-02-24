@@ -16,11 +16,11 @@ export class AppComponent {
   constructor(private recipesService: RecipesService) { }
 
 
-  handleRecipesClick = () => {
-    console.log(this.recipes, 'yolo');
-    this.recipesService.getRecipes()
-      .subscribe(data => {
-        console.log(data);
-      });
-  }
+  // handleRecipesClick = () => {
+  //   console.log(this.recipes, 'yolo');
+  //   this.recipesService.getRecipes()
+  //     .subscribe(data => {
+  //       console.log(data);
+  //     });
+  // }
 }

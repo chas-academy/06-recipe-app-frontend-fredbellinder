@@ -62,28 +62,17 @@ export class RecipesComponent implements OnInit, OnDestroy {
     this.recipesListsService.addRecipeToList(e);
   }
 
-  handleSubmit = () => {
-    // const query: string = $('input[name="recipe_q"]').val();
-    // const exclude: string =
-    //   $('input[name="recipe_exclude"]').val() != null
-    //     ? '&excluded=' + $('input[name="recipe_exclude"]').val()
-    //     : '';
-    // const diet: string =
-    //   $('select.select-diet').val() !== ''
-    //     ? '&diet=' + $('select.select-diet').val()
-    //     : '';
-    // const health: string =
-    //   $('select.select-health').val() !== ''
-    //     ? '&health=' + $('select.select-health').val()
-    //     : '';
-
+  handleSubmit = (e) => {
+    const bodySearch = {
+      "query": e.currentTarget[0].value
+    };
 
     this.searchSubscription = this.recipesService
-      .getRecipes()
+      .getRecipes(bodySearch)
       .subscribe(data => {
         console.log(data);
         this.recipes = data;
-        this.renderThis = this.recipes.data;
+        this.renderThis = this.recipes;
       });
   }
 
