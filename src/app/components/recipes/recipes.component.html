@@ -68,7 +68,7 @@
         <a [routerLink]="['/recipe-detail/', i.recipe.id]">
           <p class="recipe-name">{{ i.recipe.label }}</p>
         </a>
-        <button (click)="addRecipesToList(i.recipe)">Favorite</button>
+        <button (click)="addRecipesToList(i.recipe.id)">Favorite</button>
       </div>
     </li>
   </ul>

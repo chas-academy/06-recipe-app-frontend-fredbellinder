@@ -13,15 +13,16 @@ import { RecipesService } from 'src/app/recipes.service';
   styleUrls: ['./recipe-detail.component.css']
 })
 export class RecipeDetailComponent implements OnInit {
-  recipe_detail;
-  recipe_id;
+  recipeDetail;
+  recipeId;
   constructor(
     private recipeService: RecipesService, private recipesComponent: RecipesComponent, private activatedRoute: ActivatedRoute) {
-    this.recipe_id = this.activatedRoute.snapshot.paramMap.get('id');
+    this.recipeId = this.activatedRoute.snapshot.paramMap.get('id');
 
-    this.recipeService.getRecipeDetails(this.recipe_id).subscribe(data => {
-      debugger;
-      this.recipe_detail = data.recipe;
+    this.recipeService.getRecipeDetails(this.recipeId).subscribe(data => {
+
+      this.recipeDetail = data.data.recipe;
+      console.log(this.recipeDetail);
     }
     )
   }

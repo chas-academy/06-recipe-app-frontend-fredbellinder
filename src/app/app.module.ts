@@ -13,6 +13,7 @@ import { RecipeDetailComponent } from "./components/recipe-detail/recipe-detail.
 import { NoSuchUrlComponent } from "./components/no-such-url/no-such-url.component";
 import { RecipeListComponent } from "./components/recipe-list/recipe-list.component";
 import { LoginComponent } from './components/login/login.component';
+import { SignupComponent } from './components/signup/signup.component';
 
 @NgModule({
   declarations: [
@@ -24,10 +25,11 @@ import { LoginComponent } from './components/login/login.component';
     RecipeDetailComponent,
     NoSuchUrlComponent,
     RecipeListComponent,
-    LoginComponent
+    LoginComponent,
+    SignupComponent
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [RecipesComponent],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }

@@ -5,7 +5,6 @@ import {
   Injectable
 } from '@angular/core';
 import { RecipesService } from '../../recipes.service';
-import * as $ from 'jquery';
 import { Subscription } from 'rxjs';
 import { RecipesListsService } from '../../recipes-lists.service';
 

@@ -19,17 +19,6 @@ export class RecipesService {
 
       Authorization: `${localStorage.token_type} ${localStorage.RecipeAccessToken}`
     };
-    const fetchData = {
-      method: 'GET',
-      headers: httpHeaders
-    };
-
-    // fetch(url, fetchData)
-    //   .then((res) => { res.json() })
-    //   .then((response) => {
-    //     return response;
-    //   })
-    // .catch ((error) => console.error(error));
 
     this.searchResults = this.http.get<Observable<Array<object>>>(url, { headers: httpHeaders });
     return this.searchResults;

@@ -1,6 +1,3 @@
-<p>
-  recipe-list works!
-</p>
 <section class="list-section">
   <ul class="list-group" *ngIf="renderThisFavorites">
     <li class="list-group-item" *ngFor="let i of renderThisFavorites">
@@ -13,6 +10,9 @@
       </div>
     </li>
   </ul>
-  <button id="mfBtn" (click)="fader()">Fader</button>
-  <button id="faded">Faded</button>
+  <div class="loading">
+
+    <img *ngIf="!renderThisFavorites || !renderThisFavorites == [void]" src="../../../assets/giphy.gif"
+      alt="Oops, loading gif has gone missing :(">
+  </div>
 </section>

@@ -19,6 +19,14 @@ div.recipe-item {
   align-items: center;
 }
 
+div .loading {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 @media only screen and (max-width: 450px) {
   .recipe-list {
     width: 100%;
