@@ -1,0 +1,26 @@
+<section class="recipe-detail-section">
+  <h2>Recipe Details</h2>
+  <div class="recipe-detail-title">
+    <h3 *ngIf="recipeDetail">
+      {{ recipeDetail.label }}
+    </h3>
+    <div *ngIf="recipeDetail" class="recipe-detail">
+      <a [routerLink]="['/recipe-detail/', recipeDetail.id]">
+        <h4>{{recipeDetail.label}}</h4>
+      </a>
+      <img *ngIf="recipeDetail.image" class="recipe-detail-img" src="{{recipeDetail.image}}"
+        alt="{{recipeDetail.label}}-picture">
+      <ul *ngIf="recipeDetail.ingredientLines">
+        <li>
+          Ingredients:
+        </li>
+        <li *ngFor="let item of recipeDetail.ingredientLines">
+          {{ item }}
+        </li>
+      </ul>
+      <p *ngIf="recipeDetail.totalTime">Cooking time {{ recipeDetail.totalTime }} minutes</p>
+      <p>Calories: {{ recipeDetail.calories | number: '1.0-0'}}</p>
+      <a href='https://www.facebook.com/sharer/sharer.php?u={{recipeDetail.shareAs}}'>Share on Facebook</a>
+    </div>
+  </div>
+</section>

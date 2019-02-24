@@ -1,0 +1,19 @@
+<section class="list-section">
+  <ul class="list-group" *ngIf="renderThisFavorites">
+    <li class="list-group-item" *ngFor="let i of renderThisFavorites">
+      <div class="recipe-item">
+        <img class="recipe-list-img" src="{{ i.recipe.image }}" alt="{{ i.recipe.label }}-picture" />
+        <a [routerLink]="['/recipe-detail/', i.recipe.id]">
+          <p class=" recipe-name">{{ i.recipe.label }}</p>
+        </a>
+        <button (click)="removeRecipeFromList(i.recipe.id)">Delete</button>
+      </div>
+    </li>
+  </ul>
+  <!-- <div class="loading">
+
+    <img *ngIf="" src="../../../assets/giphy.gif"
+      alt="Oops, loading gif has gone missing">
+    <p>{{renderThisFavoritesIsArray}}</p>
+  </div> -->
+</section>

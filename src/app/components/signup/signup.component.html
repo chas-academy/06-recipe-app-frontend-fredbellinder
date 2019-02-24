@@ -1,0 +1,52 @@
+<main class="my-form">
+  <div class="cotainer">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div class="card">
+          <div class="card-header">Register</div>
+          <div class="card-body">
+            <form name="my-form" (ngSubmit)="handleSignup($event)">
+              <div class=" form-group row">
+                <label for="full_name" class="col-md-4 col-form-label text-md-right">Full Name</label>
+                <div class="col-md-6">
+                  <input type="text" id="full_name" class="form-control" name="full-name">
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label for="email_address" class="col-md-4 col-form-label text-md-right">E-Mail Address</label>
+                <div class="col-md-6">
+                  <input type="text" id="email_address" class="form-control" name="email-address">
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label text-md-right" for="password">Password</label>
+                <div class="col-md-6">
+                  <input type="password" id="password" name="password" placeholder="" class="form-control">
+
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label text-md-right" for="password_confirm">Password (Confirm)</label>
+                <div class="col-md-6">
+                  <input type="password" id="password_confirm" name="password_confirm" placeholder=""
+                    class="form-control">
+                  <p class="help-block">Please confirm password{{passwordTruthness}}</p>
+                </div>
+              </div>
+
+              <div class="col-md-6 offset-md-4">
+                <button type="submit" class="btn btn-primary">
+                  Register
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</main>

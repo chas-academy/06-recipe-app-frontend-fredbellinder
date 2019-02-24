@@ -1,0 +1,75 @@
+<section id="search-section">
+  <form class="recipe-search" name="recipe-search" (ngSubmit)="handleSubmit($event)">
+    <label for=" recipe_q">I wanna eat:</label>
+    <input name="recipe_q" id="recipe_q" type="text" value="" />
+    <!-- <label for="recipe_exclude">But not:</label>
+    <input name="recipe_exclude" id="recipe_exclude" type="text" />
+    <label for="diet-select">My diet:</label>
+    <select class="select-diet" name="diet-select" id="diet-select">
+      <option value="">--Please choose an option--</option>
+      <option value="balanced">balanced</option>
+      <option value="high-protein">high-protein</option>
+      <option value="low-carb">low-carb</option>
+      <option value="low-fat">low-fat</option>
+      These are inactivated from edamams api due to free account:
+      <option value="high-fiber">high-fiber</option>
+      <option value="low-sodium">low-sodium</option>
+    </select> -->
+
+    <!-- <label for="health-select">I need my food to be:</label>
+    <select class="select-health" name="health-select" id="health-select">
+      <option value="">--Please choose an option--</option>
+      <option value="alcohol-free">Alcohol-Free</option>
+      <option value="peanut-free">Peanut-Free</option>
+      <option value="sugar-conscious">Sugar-Conscious</option>
+      <option value="tree-nut-free">Tree-Nut-Free</option>
+      <option value="vegan">Vegan</option>
+      <option value="vegetarian">Vegetarian</option>
+    </select> -->
+
+    <button type="submit">Get Hits</button>
+  </form>
+</section>
+<section class="recipe-list" *ngIf="renderThis">
+
+
+
+  <form class="filter-form p-2" (change)="getSelectedOptions($event)">
+    <div>
+      <input type="checkbox" id="alcohol-free" value="Alcohol-Free" />
+      <label for="alcohol-free">Alcohol-Free </label>
+    </div>
+    <div>
+      <input type="checkbox" id="peanut-free" value="Peanut-Free" />
+      <label for="peanut-free">Peanut-Free </label>
+    </div>
+    <div>
+      <input type="checkbox" id="sugar-conscious" value="Sugar-Conscious" />
+      <label for="sugar-conscious">Sugar-Conscious </label>
+    </div>
+    <div>
+      <input type="checkbox" id="tree-nut-free" value="Tree-Nut-Free" />
+      <label for="tree-nut-free">Tree-Nut-Free </label>
+    </div>
+    <div>
+      <input type="checkbox" id="vegan" value="Vegan" />
+      <label for="vegan">Vegan </label>
+    </div>
+    <div>
+      <input type="checkbox" id="vegetarian" value="Vegetarian" />
+      <label for="vegetarian">Vegetarian </label>
+    </div>
+  </form>
+
+  <ul class="list-group" *ngIf="renderThis">
+    <li class="list-group-item" *ngFor="let i of renderThis">
+      <div class="recipe-item">
+        <img class="recipe-search-img" src="{{ i.recipe.image }}" alt="{{ i.recipe.label }}-picture" />
+        <a [routerLink]="['/recipe-detail/', i.recipe.id]">
+          <p class="recipe-name">{{ i.recipe.label }}</p>
+        </a>
+        <button (click)="addRecipesToList(i.recipe.id)">Favorite</button>
+      </div>
+    </li>
+  </ul>
+</section>
